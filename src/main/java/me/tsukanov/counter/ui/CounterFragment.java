@@ -12,7 +12,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.SparseIntArray;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -32,8 +32,8 @@ import me.tsukanov.counter.ui.dialogs.EditDialog;
 
 public class CounterFragment extends Fragment {
     public static final int MAX_VALUE = 9999;
-    public static final int MIN_VALUE = 0;
-    public static final int DEFAULT_VALUE = MIN_VALUE;
+    public static final int MIN_VALUE = -9999;
+    public static final int DEFAULT_VALUE = 0;
     private static final long DEFAULT_VIBRATION_DURATION = 30; // Milliseconds
     private String name = null;
     private int value = DEFAULT_VALUE;
@@ -87,6 +87,13 @@ public class CounterFragment extends Fragment {
         View view = inflater.inflate(R.layout.counter, container, false);
 
         counterLabel = (TextView) view.findViewById(R.id.counterLabel);
+        counterLabel.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                if (settings.getBoolean("labelControlOn", true)) {
+                    increment();
+                }
+            }
+        });
 
         incrementButton = (Button) view.findViewById(R.id.incrementButton);
         incrementButton.setOnClickListener(new OnClickListener() {
@@ -109,7 +116,7 @@ public class CounterFragment extends Fragment {
             app.counters.put(name, value);
         }
 
-        ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle(name);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(name);
 
         return view;
     }

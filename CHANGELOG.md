@@ -1,5 +1,23 @@
 # Changelog
 
+## Version 18
+
+* Increased minimum Android version requirement to 4.0 (Ice Cream Sandwich)
+* Fixed counter visibility in the dark theme
+* Added icons into settings
+* Translation updates
+
+## Version 17
+
+* Dark theme
+* RTL support
+* Translation updates
+
+## Version 16
+* Minor user interface updates (using new Android APIs).
+* Added Swedish and Portuguese translations.
+* Updated old translations.
+
 ## Version 15
 * Updated user application icon (thanks to Dawid Tarasiuk).
 * Added Polish translation.
